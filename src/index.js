@@ -3,7 +3,6 @@ window.addEventListener('DOMContentLoaded', function() {
   'use strict';
   let calc = require('./parts/calc.js'),
   form = require('./parts/form.js'),
-  links = require('./parts/links.js'),
   modal = require('./parts/modal.js'),
   slider = require('./parts/slider.js'),
   tabs = require('./parts/tabs.js'),
@@ -11,7 +10,6 @@ window.addEventListener('DOMContentLoaded', function() {
 
   calc();
   form();
-  links();
   modal();
   slider();
   tabs();

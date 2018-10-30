@@ -4,7 +4,6 @@ window.addEventListener('DOMContentLoaded', function() {
   'use strict';
   let calc = require('./parts/calc.js'),
   form = require('./parts/form.js'),
-  links = require('./parts/links.js'),
   modal = require('./parts/modal.js'),
   slider = require('./parts/slider.js'),
   tabs = require('./parts/tabs.js'),
@@ -12,13 +11,12 @@ window.addEventListener('DOMContentLoaded', function() {
 
   calc();
   form();
-  links();
   modal();
   slider();
   tabs();
   timer();
 });
-},{"./parts/calc.js":2,"./parts/form.js":3,"./parts/links.js":4,"./parts/modal.js":5,"./parts/slider.js":6,"./parts/tabs.js":7,"./parts/timer.js":8}],2:[function(require,module,exports){
+},{"./parts/calc.js":2,"./parts/form.js":3,"./parts/modal.js":4,"./parts/slider.js":5,"./parts/tabs.js":6,"./parts/timer.js":7}],2:[function(require,module,exports){
 function calc() {
   // Calc
   let persons = document.querySelectorAll('.counter-block-input')[0],
@@ -139,40 +137,6 @@ function form() {
 
 module.exports = form;
 },{}],4:[function(require,module,exports){
-function links() {
-  // собираем все якоря; устанавливаем время анимации и количество кадров
-  const anchors = [].slice.call(document.querySelectorAll('a[href*="#"]')),
-        animationTime = 800,
-        framesCount = 20;
-  anchors.forEach(function (item) {
-    // каждому якорю присваиваем обработчик события
-    item.addEventListener('click', function (e) {
-      // убираем стандартное поведение
-      e.preventDefault(); // для каждого якоря берем соответствующий ему элемент и определяем его координату Y
-
-      let coordY = document.querySelector(item.getAttribute('href')).getBoundingClientRect().top; // запускаем интервал, в котором
-
-      let scroller = setInterval(function () {
-        // считаем на сколько скроллить за 1 такт
-        let scrollBy = coordY / framesCount; // если к-во пикселей для скролла за 1 такт больше расстояния до элемента
-        // и дно страницы не достигнуто
-
-        if (scrollBy > window.pageYOffset - coordY && window.innerHeight + window.pageYOffset < document.body.offsetHeight) {
-          // то скроллим на к-во пикселей, которое соответствует одному такту
-          window.scrollBy(0, scrollBy);
-        } else {
-          // иначе добираемся до элемента и выходим из интервала
-          window.scrollTo(0, coordY);
-          clearInterval(scroller);
-        } // время интервала равняется частному от времени анимации и к-ва кадров
-
-      }, animationTime / framesCount);
-    });
-  });
-}
-
-module.exports = links;
-},{}],5:[function(require,module,exports){
 function modal() {
   // Modal
   let isIE = false,
@@ -244,7 +208,7 @@ function modal() {
 }
 
 module.exports = modal;
-},{}],6:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 function slider() {
   // Slider
   let slideIndex = 1,
@@ -294,7 +258,7 @@ function slider() {
 }
 
 module.exports = slider;
-},{}],7:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 function tabs() {
   let tab = document.querySelectorAll('.info-header-tab'),
       info = document.querySelector(".info-header"),
@@ -332,7 +296,7 @@ function tabs() {
 }
 
 module.exports = tabs;
-},{}],8:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 function timer() {
   // timer
   let deadline = '2018-11-11';
